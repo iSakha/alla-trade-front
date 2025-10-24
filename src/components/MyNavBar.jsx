@@ -88,7 +88,7 @@ function MyNavBar() {
                   href="spl-add"
                   onClick={(e) => handleLinkClick(e, handleShowAddSupplier)}
                 >
-                  Добавить поставщика
+                  Добавить нового поставщика
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
