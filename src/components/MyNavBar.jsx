@@ -73,7 +73,7 @@ function MyNavBar() {
                 </NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="db">Ассортимент</Nav.Link>
-              <Nav.Link href="check">Ревизия</Nav.Link>
+              <Nav.Link href="check">Ревизия склада</Nav.Link>
               <NavDropdown title="Работа с базой" id="basic-nav-dropdown">
                 <NavDropdown.Item
                   href="db-add"
