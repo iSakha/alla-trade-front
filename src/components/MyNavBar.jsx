@@ -66,7 +66,7 @@ function MyNavBar() {
                   href="wh-in"
                   onClick={(e) => handleLinkClick(e, handleShowWhIn)}
                 >
-                  Приход на склад
+                  Приход на fucking склад
                 </NavDropdown.Item>
                 <NavDropdown.Item href="wh-distr">
                   Распределение товара
