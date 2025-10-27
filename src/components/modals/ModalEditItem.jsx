@@ -103,10 +103,10 @@ function ModalEditItem({ show, onHide, product }) {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onHide}>
-          Cancel
+          Отменить
         </Button>
         <Button variant="primary" type="submit" onClick={handleSubmit}>
-          Save
+          Сохранить
         </Button>
       </Modal.Footer>
     </Modal>

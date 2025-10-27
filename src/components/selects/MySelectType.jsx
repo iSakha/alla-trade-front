@@ -64,7 +64,7 @@ function MySelectType({ onSelect, value = "" }) {
   return (
     <Form.Select onChange={handleChange} value={value || ""}>
       <option value="" disabled>
-        Select type
+        Выбрать категорию продукта
       </option>
       {options.map((option) => (
         <option key={option.value} value={option.value}>

@@ -51,7 +51,7 @@ function DbTable({ data, onEdit, onDelete }) {
                   variant="secondary"
                   onClick={() => onEdit && onEdit(product)}
                 >
-                  Edit
+                  Изменить
                 </Button>
               </div>
             </td>
@@ -61,7 +61,7 @@ function DbTable({ data, onEdit, onDelete }) {
                   variant="danger"
                   onClick={() => onDelete && onDelete(product)}
                 >
-                  Delete
+                  Удалить
                 </Button>
               </div>
             </td>

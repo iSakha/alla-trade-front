@@ -27,7 +27,7 @@ function MySelectSupplier({ onSelect, value = "" }) {
   return (
     <Form.Select onChange={handleChange} value={value || ""}>
       <option value="" disabled>
-        Select supplier
+        Выбрать поставщика
       </option>
       {options.map((option) => (
         <option key={option.value} value={option.value}>
