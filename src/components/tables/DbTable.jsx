@@ -24,16 +24,7 @@ function DbTable({ data, onEdit, onDelete }) {
           <th>Удалить</th>
         </tr>
       </thead>
-      {/* <thead>
-        <tr>
-          <th>ID</th>
-          <th>Product name</th>
-          <th>Supplier</th>
-          <th>Unit</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </thead> */}
+
       <tbody>
         {data.map((product) => (
           <tr key={product.id}>

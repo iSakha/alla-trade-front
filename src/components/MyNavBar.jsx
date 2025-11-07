@@ -60,36 +60,56 @@ function MyNavBar() {
           <Navbar.Toggle area-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
+{/* ========================================================================================== */}              
               <NavDropdown title="Склад" id="basic-nav-dropdown">
+{/* ========================================================================================== */}                 
                 <NavDropdown.Item href="wh">Наличие на складе</NavDropdown.Item>
+
+{/* **************************************************************************/}  
                 <NavDropdown.Item
                   href="wh-in"
                   onClick={(e) => handleLinkClick(e, handleShowWhIn)}
                 >
                   Приход на склад
                 </NavDropdown.Item>
+{/* **************************************************************************/}  
+                <NavDropdown.Item
+                  href="wh-in-arj"
+                  // onClick={(e) => handleLinkClick(e, handleShowWhIn)}
+                >
+                  История приходов
+                </NavDropdown.Item>
+{/* **************************************************************************/}  
                 <NavDropdown.Item href="wh-distr">
                   Распределение товара
                 </NavDropdown.Item>
+{/* **************************************************************************/}               
               </NavDropdown>
+{/* ========================================================================================== */}               
               <Nav.Link href="db">Ассортимент</Nav.Link>
+{/* ========================================================================================== */}               
               <Nav.Link href="check">Ревизия склада</Nav.Link>
+{/* ========================================================================================== */}               
               <NavDropdown title="Работа с базой" id="basic-nav-dropdown">
+{/* ========================================================================================== */}                 
                 <NavDropdown.Item
                   href="db-add"
                   onClick={(e) => handleLinkClick(e, handleShowAddItem)}
                 >
                   Добавить товар
                 </NavDropdown.Item>
+{/* **************************************************************************/}                
                 <NavDropdown.Item href="spl">
                   Список поставщиков
                 </NavDropdown.Item>
+{/* **************************************************************************/}                   
                 <NavDropdown.Item
                   href="spl-add"
                   onClick={(e) => handleLinkClick(e, handleShowAddSupplier)}
                 >
                   Добавить поставщика
                 </NavDropdown.Item>
+{/* **************************************************************************/}                  
               </NavDropdown>
             </Nav>
             <Nav>

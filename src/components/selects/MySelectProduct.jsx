@@ -10,17 +10,20 @@ function MySelectProduct({ onSelect, value = "" }) {
       .get("https://sakha.lat/alla/products/")
       .then((res) => {
         const formattedOptions = res.data.map((item) => ({
-          value: item.id,
+          value: String(item.id),   // force to string for consistent comparison
           label: item.product_name,
         }));
         setOptions(formattedOptions);
       })
-      .catch((err) => console.error("Error fetching suppliers:", err));
+      .catch((err) => console.error("Error fetching products:", err));
   }, []);
 
   const handleChange = (e) => {
     const selectedValue = e.target.value;
-    if (onSelect) onSelect(selectedValue);
+    const selectedOption = options.find(
+      (opt) => opt.value === selectedValue
+    );
+    if (onSelect) onSelect(selectedOption || null);
   };
 
   return (

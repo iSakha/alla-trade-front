@@ -6,6 +6,7 @@ import DbTable from "../../../components/tables/DbTable";
 import ModalEditItem from "../../../components/modals/ModalEditItem";
 
 const URL = "https://sakha.lat/alla"
+// const URL = "http://127.0.0.1:4444"
 
 function Database() {
   const [products, setProducts] = useState([]);
@@ -17,7 +18,7 @@ function Database() {
 
   const fetchProducts = () => {
     axios
-      .get(URL + "/products/")
+      .get(URL + "/products")
       .then((res) => {
         setProducts(res.data);
         setLoading(false);

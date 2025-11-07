@@ -22,7 +22,7 @@ function App() {
           <Route path="spl" element={<Suppliers />} />
           <Route path="spl-add" element={<AddSupplier />} />
           <Route path="wh" element={<Warehouse />} />
-          <Route path="wh-in" element={<WhIn />} />
+          <Route path="wh-in-arj" element={<WhIn />} />
           <Route path="wh-distr" element={<WhDistribution />} />
         </Routes>
       </BrowserRouter>
