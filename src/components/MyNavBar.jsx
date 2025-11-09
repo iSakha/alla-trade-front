@@ -6,6 +6,7 @@ import ModalAddSupplier from "./modals/ModalAddSupplier";
 import ModalEditItem from "./modals/ModalEditItem";
 import komar from "../assets/komar.png";
 import ModalWhIn from "./modals/ModalWhIn";
+import ModalEditWhIn from "./modals/ModalEditWhIn";
 
 function MyNavBar() {
   const [showModalLogin, setShowModalLogin] = useState(false);
@@ -13,6 +14,7 @@ function MyNavBar() {
   const [showModalAddSupplier, setShowModalAddSupplier] = useState(false);
   const [showModalEditItem, setShowModalEditItem] = useState(false);
   const [showModalWhIn, setShowModalWhIn] = useState(false);
+  const [showModalEditWhIn, setShowModalEditWhIn] = useState(false);
 
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -45,6 +47,7 @@ function MyNavBar() {
   const handleShowAddSupplier = () => setShowModalAddSupplier(true);
 
   const handleCloseEditItem = () => setShowModalEditItem(false);
+  const handleCloseEditWhIn = () => setShowModalEditWhIn(false);
 
   const handleLinkClick = (e, handler) => {
     e.preventDefault();
@@ -60,56 +63,56 @@ function MyNavBar() {
           <Navbar.Toggle area-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-{/* ========================================================================================== */}              
+              {/* ========================================================================================== */}
               <NavDropdown title="Склад" id="basic-nav-dropdown">
-{/* ========================================================================================== */}                 
+                {/* ========================================================================================== */}
                 <NavDropdown.Item href="wh">Наличие на складе</NavDropdown.Item>
 
-{/* **************************************************************************/}  
+                {/* **************************************************************************/}
                 <NavDropdown.Item
                   href="wh-in"
                   onClick={(e) => handleLinkClick(e, handleShowWhIn)}
                 >
                   Приход на склад
                 </NavDropdown.Item>
-{/* **************************************************************************/}  
+                {/* **************************************************************************/}
                 <NavDropdown.Item
                   href="wh-in-arj"
-                  // onClick={(e) => handleLinkClick(e, handleShowWhIn)}
+                // onClick={(e) => handleLinkClick(e, handleShowWhIn)}
                 >
                   История приходов
                 </NavDropdown.Item>
-{/* **************************************************************************/}  
+                {/* **************************************************************************/}
                 <NavDropdown.Item href="wh-distr">
                   Распределение товара
                 </NavDropdown.Item>
-{/* **************************************************************************/}               
+                {/* **************************************************************************/}
               </NavDropdown>
-{/* ========================================================================================== */}               
+              {/* ========================================================================================== */}
               <Nav.Link href="db">Ассортимент</Nav.Link>
-{/* ========================================================================================== */}               
+              {/* ========================================================================================== */}
               <Nav.Link href="check">Ревизия склада</Nav.Link>
-{/* ========================================================================================== */}               
+              {/* ========================================================================================== */}
               <NavDropdown title="Работа с базой" id="basic-nav-dropdown">
-{/* ========================================================================================== */}                 
+                {/* ========================================================================================== */}
                 <NavDropdown.Item
                   href="db-add"
                   onClick={(e) => handleLinkClick(e, handleShowAddItem)}
                 >
                   Добавить товар
                 </NavDropdown.Item>
-{/* **************************************************************************/}                
+                {/* **************************************************************************/}
                 <NavDropdown.Item href="spl">
                   Список поставщиков
                 </NavDropdown.Item>
-{/* **************************************************************************/}                   
+                {/* **************************************************************************/}
                 <NavDropdown.Item
                   href="spl-add"
                   onClick={(e) => handleLinkClick(e, handleShowAddSupplier)}
                 >
                   Добавить поставщика
                 </NavDropdown.Item>
-{/* **************************************************************************/}                  
+                {/* **************************************************************************/}
               </NavDropdown>
             </Nav>
             <Nav>
@@ -142,7 +145,17 @@ function MyNavBar() {
         onHide={handleCloseEditItem}
         product={selectedProduct}
       />
+
       <ModalWhIn show={showModalWhIn} onHide={handleCloseWhIn} />
+
+      <ModalEditWhIn
+        // show={handleEditItem}
+        show={showModalEditWhIn}
+        onHide={handleCloseEditWhIn}
+        product={selectedProduct}
+      />
+
+
     </>
   );
 }

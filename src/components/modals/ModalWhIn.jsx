@@ -35,7 +35,7 @@ function ModalWhIn({ show, onHide }) {
     console.log("productObj: ", productObj);
 
     const response = await axios
-      .post(URL + "/wh/in", productObj, {
+      .post(URL + "/wh", productObj, {
         headers: {
           "Content-Type": "application/json",
         },

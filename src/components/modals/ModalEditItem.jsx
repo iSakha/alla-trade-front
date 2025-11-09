@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form, Button, Alert } from "react-bootstrap";
 import MySelectSupplier from "../selects/MySelectSupplier";
 import MySelectType from "../selects/MySelectType";
 
@@ -50,6 +50,7 @@ function ModalEditItem({ show, onHide, product }) {
       }
 
       console.log("Product updated successfully");
+      alert(`Запись ${formData.product_name} успешно обновлена!`);
       onHide(); // close modal
     } catch (err) {
       console.error(err);
@@ -59,19 +60,19 @@ function ModalEditItem({ show, onHide, product }) {
   return (
     <Modal show={show} onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Edit product</Modal.Title>
+        <Modal.Title>Редактирование товара</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicType" className="mb-3">
-            <Form.Label>Type</Form.Label>
+            <Form.Label>Категория товара</Form.Label>
             <MySelectType
               value={formData.id_type}
               onSelect={(val) => setFormData((prev) => ({ ...prev, id_type: val }))}
             />
           </Form.Group>
           <Form.Group controlId="formBasicSupplier" className="mb-3">
-            <Form.Label>Supplier</Form.Label>
+            <Form.Label>Поставщик</Form.Label>
             <MySelectSupplier
               value={formData.id_supplier}
               onSelect={(val) =>
@@ -80,7 +81,7 @@ function ModalEditItem({ show, onHide, product }) {
             />
           </Form.Group>
           <Form.Group controlId="formBasicName" className="mb-3">
-            <Form.Label>Product name</Form.Label>
+            <Form.Label>Наименование товара</Form.Label>
             <Form.Control
               type="text"
               name="product_name"
@@ -90,7 +91,7 @@ function ModalEditItem({ show, onHide, product }) {
             />
           </Form.Group>
           <Form.Group controlId="formBasicUnit" className="mb-3">
-            <Form.Label>Unit</Form.Label>
+            <Form.Label>Ед. измерения</Form.Label>
             <Form.Control
               type="text"
               name="unit"

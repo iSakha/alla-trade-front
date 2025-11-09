@@ -1,7 +1,9 @@
+// WhIn.jsx
 import React, { useState, useEffect } from "react";
 import { Button, Form, Container } from "react-bootstrap";
 import WhInTable from "../../components/tables/WhInTable";
 import axios from "axios";
+import ModalEditWhIn from "../../components/modals/ModalEditWhIn";
 
 const URL = "https://sakha.lat/alla"
 
@@ -13,9 +15,12 @@ function WhIn() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [showModalEditWhIn, setShowModalEditWhIn] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
   const fetchProducts = () => {
     axios
-      .get(URL + "/wh/in")
+      .get(URL + "/wh")
       .then((res) => {
         setProducts(res.data);
         setLoading(false);
@@ -33,21 +38,21 @@ function WhIn() {
   }, []);
 
   const handleEditItem = (product) => {
-    // console.log("Edit item:", product);
-    // setSelectedProduct(product);   // store row
-    // setShowModalEditItem(true);    // open modal
+    console.log("Edit item:", product);
+    setSelectedProduct(product);   // store row
+    setShowModalEditWhIn(true);    // open modal
   };
 
-    const handleDelete = (product) => {
-    // console.log("Delete item:", product);
-    // if (window.confirm(`Are you sure to delete "${product.product_name}"?`)) {
-    //   axios
-    //     .delete(`${URL}/products/delete/${product.id}/`)
-    //     .then(() => {
-    //       fetchProducts(); // refresh after deletion
-    //     })
-    //     .catch((err) => console.log(err));
-    // }
+  const handleDelete = (product) => {
+    console.log("Delete item:", product);
+    if (window.confirm(`Are you sure to delete "${product.name}"?`)) {
+      axios
+        .delete(`${URL}/wh/delete/${product.id}/`)
+        .then(() => {
+          fetchProducts(); // refresh after deletion
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -59,6 +64,15 @@ function WhIn() {
           onEdit={handleEditItem}
           onDelete={handleDelete} />
       </Container>
+
+      {showModalEditWhIn && (
+        <ModalEditWhIn
+          show={showModalEditWhIn}
+          onHide={() => setShowModalEditWhIn(false)}
+          product={selectedProduct}
+          onUpdated={fetchProducts} // Добавь этот пропс
+        />
+      )}
     </>
   );
 }
