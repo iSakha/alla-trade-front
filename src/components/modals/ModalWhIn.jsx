@@ -20,7 +20,13 @@ function ModalWhIn({ show, onHide }) {
   const [error, setError] = useState("");
 
   const addProduct = async () => {
-    const formattedDate = date ? date.toISOString().split("T")[0] : "";
+    console.log("date: ", date);
+    // const formattedDate = date ? date.toISOString().split("T")[0] : "";
+    const formattedDate = date
+  ? `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`
+  : "";
+
+    console.log("formattedDate: ", formattedDate);
 
     const productObj = {
       date: formattedDate,

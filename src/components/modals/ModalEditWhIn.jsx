@@ -18,28 +18,16 @@ function ModalEditWhIn({ show, onHide, product, onUpdated }) {
     });
 
     // Преобразуем дату из строки в объект Date для DatePicker
-    // const getDateObject = (dateString) => {
-    //     if (!dateString) return new Date();
-    //     return new Date(dateString);
-    // };
-
     const getDateObject = (dateString) => {
-    if (!dateString) return new Date();
-    
-    if (typeof dateString === 'string' && dateString.includes('-')) {
-        // Разбираем дату по частям чтобы избежать проблем с часовым поясом
-        const [year, month, day] = dateString.split('-');
-        return new Date(year, month - 1, day); // ← Месяц от 0 до 11
-    }
-    
-    return dateString;
-};
+        if (!dateString) return new Date();
+        return new Date(dateString);
+    };
 
     useEffect(() => {
         if (product) {
             // Форматируем дату при загрузке
             const formattedDate = product.date ? product.date.split('T')[0] : "";
-            
+
             setFormData({
                 date: formattedDate,
                 name: product.name || "",
@@ -81,12 +69,12 @@ function ModalEditWhIn({ show, onHide, product, onUpdated }) {
                 formData
             );
             console.log("Updated successfully:", response.data);
-                 alert(`Запись ${formData.name} успешно обновлена!`);
-            
+            alert(`Запись ${formData.name} успешно обновлена!`);
+
             if (onUpdated) {
                 onUpdated(); // Обновляем таблицу
             }
-            
+
             onHide(); // Закрываем модальное окно
         } catch (err) {
             console.error("Update error:", err);

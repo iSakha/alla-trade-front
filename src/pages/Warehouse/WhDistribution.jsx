@@ -1,8 +1,54 @@
-import React from 'react'
+// WhDistribution.jsx
+import React, { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
+import axios from "axios";
+import WhDistrTable from "../../components/tables/WhDistrTable";
+
+const URL = "https://sakha.lat/alla"
 
 function WhDistribution() {
+
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+  const fetchProducts = () => {
+    axios
+      .get(URL + "/wh/stock")
+      .then((res) => {
+        setProducts(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setError("Error data loading");
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+
   return (
-    <div>WhDistribution</div>
+        <>
+      <h2>Распределение товара</h2>
+      <Container>
+        <WhDistrTable
+          data={products}
+        />
+      </Container>
+    </>
   )
 }
 
