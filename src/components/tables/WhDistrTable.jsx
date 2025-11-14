@@ -15,9 +15,11 @@ function WhDistrTable({ data }) {
                     <tr>
                         <th className="d-none">id</th>
                         <th>Товар</th>
-                        <th>Количество</th>
                         <th>Ед. измерения</th>
-                        <th>Сумма</th>
+                        <th>Цена</th>
+                        <th>Остаток на складе</th>
+                        <th>Алла</th>
+                        <th>Инна</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,9 +27,11 @@ function WhDistrTable({ data }) {
                         <tr key={product.id}>
                             <td className="d-none">{product.id}</td>
                             <td>{product.name}</td>
-                            <td>{product.qtt_sum}</td>
                             <td>{product.unit}</td>
-                            <td>{product.money_sum}</td>
+                            <td>{product.price}</td>
+                            <td>{product.qtt_wh_remain}</td>
+                            <td>{product.qtt_pers1}</td>
+                            <td>{product.qtt_pers2}</td>
                         </tr>
                     ))}
                 </tbody>

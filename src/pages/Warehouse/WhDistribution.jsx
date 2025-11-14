@@ -14,7 +14,7 @@ function WhDistribution() {
 
   const fetchProducts = () => {
     axios
-      .get(URL + "/wh/stock")
+      .get(URL + "/distr")
       .then((res) => {
         setProducts(res.data);
         setLoading(false);
@@ -42,7 +42,7 @@ function WhDistribution() {
 
   return (
         <>
-      <h2>Распределение товара</h2>
+      <h2>Склад с учетом продаж</h2>
       <Container>
         <WhDistrTable
           data={products}
