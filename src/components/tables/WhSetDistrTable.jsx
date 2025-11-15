@@ -2,13 +2,12 @@
 import React from 'react'
 import { Table, Button } from "react-bootstrap";
 
-function WhSetDistrTable({ data, onEdit, onSave }) {
+function WhSetDistrTable({ data, onEdit, onSave, savedProducts }) {
 
     if (!data || data.length === 0) {
         return <p>Нет данных для отображения</p>;
     }
     console.log("data: ", data);
-
 
     return (
         <Table striped bordered hover>
@@ -21,7 +20,6 @@ function WhSetDistrTable({ data, onEdit, onSave }) {
                     <th>Остаток на складе</th>
                     <th>Алла</th>
                     <th>Инна</th>
-                    <th>Изменить</th>
                     <th>Сохранить</th>
                 </tr>
             </thead>
@@ -30,6 +28,7 @@ function WhSetDistrTable({ data, onEdit, onSave }) {
                     const totalDistributed =
                         (Number(product.alla) || 0) + (Number(product.inna) || 0);
                     const isInvalid = totalDistributed > product.qtt_wh_remain;
+                    const isSaved = savedProducts.has(product.id);
 
                     return (
                         <tr key={product.id} className={isInvalid ? "table-danger" : ""}>
@@ -48,6 +47,7 @@ function WhSetDistrTable({ data, onEdit, onSave }) {
                                     onChange={(e) =>
                                         onEdit({ ...product, alla: e.target.value })
                                     }
+                                    disabled={isSaved} // Блокируем навсегда после сохранения
                                 />
                             </td>
 
@@ -60,22 +60,17 @@ function WhSetDistrTable({ data, onEdit, onSave }) {
                                     onChange={(e) =>
                                         onEdit({ ...product, inna: e.target.value })
                                     }
+                                    disabled={isSaved} // Блокируем навсегда после сохранения
                                 />
                             </td>
 
                             <td>
-                                <Button variant="secondary" onClick={() => onEdit(product)}>
-                                    Изменить
-                                </Button>
-                            </td>
-
-                            <td>
                                 <Button
-                                    variant="success"
-                                    disabled={isInvalid}
+                                    variant={isSaved ? "secondary" : "success"}
+                                    disabled={isInvalid || isSaved}
                                     onClick={() => onSave(product)}
                                 >
-                                    Сохранить
+                                    {isSaved ? "Сохранено" : "Сохранить"}
                                 </Button>
                                 {isInvalid && (
                                     <small className="text-danger d-block">
@@ -86,7 +81,6 @@ function WhSetDistrTable({ data, onEdit, onSave }) {
                         </tr>
                     );
                 })}
-
             </tbody>
         </Table>
     )
