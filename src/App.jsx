@@ -9,6 +9,7 @@ import AddSupplier from "./pages/Database/Suppliers/AddSupplier"
 import Warehouse from "./pages/Warehouse/Warehouse"
 import WhIn from "./pages/Warehouse/WhIn"
 import WhDistribution from "./pages/Warehouse/WhDistribution"
+import WhSetDistribution from "./pages/Warehouse/WhSetDistribution"
 
 function App() {
   const [count, setCount] = useState(0);
@@ -24,6 +25,7 @@ function App() {
           <Route path="wh" element={<Warehouse />} />
           <Route path="wh-in-arj" element={<WhIn />} />
           <Route path="wh-distr" element={<WhDistribution />} />
+          <Route path="wh-set-distr" element={<WhSetDistribution />} />
         </Routes>
       </BrowserRouter>
     </>
