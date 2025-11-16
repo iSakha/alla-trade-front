@@ -10,6 +10,7 @@ import Warehouse from "./pages/Warehouse/Warehouse"
 import WhIn from "./pages/Warehouse/WhIn"
 import WhDistribution from "./pages/Warehouse/WhDistribution"
 import WhSetDistribution from "./pages/Warehouse/WhSetDistribution"
+import WhSetDistrHistory from "./pages/Warehouse/WhSetDistrHistory"
 
 function App() {
   const [count, setCount] = useState(0);
@@ -26,6 +27,7 @@ function App() {
           <Route path="wh-in-arj" element={<WhIn />} />
           <Route path="wh-distr" element={<WhDistribution />} />
           <Route path="wh-set-distr" element={<WhSetDistribution />} />
+          <Route path="wh-set-distr-hist" element={<WhSetDistrHistory />} />
         </Routes>
       </BrowserRouter>
     </>
