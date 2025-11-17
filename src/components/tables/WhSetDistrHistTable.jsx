@@ -2,7 +2,7 @@
 import React from 'react'
 import { Table, Button } from "react-bootstrap";
 
-function WhSetDistrHistTable({ data }) {
+function WhSetDistrHistTable({ data, onEdit, onDelete }) {
 
     if (!data || data.length === 0) {
         return <p>Нет данных для отображения</p>;

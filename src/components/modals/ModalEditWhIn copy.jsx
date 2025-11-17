@@ -20,15 +20,14 @@ function ModalEditWhIn({ show, onHide, product, onUpdated }) {
     // Преобразуем дату из строки в объект Date для DatePicker
     const getDateObject = (dateString) => {
         if (!dateString) return new Date();
-        const formattedDate = product.date ? product.date.split('T')[0] : "";
-        return new Date(formattedDate);
+        return new Date(dateString);
     };
 
     useEffect(() => {
         if (product) {
             // Форматируем дату при загрузке
             const formattedDate = product.date ? product.date.split('T')[0] : "";
-            
+
             setFormData({
                 date: formattedDate,
                 name: product.name || "",
@@ -46,6 +45,7 @@ function ModalEditWhIn({ show, onHide, product, onUpdated }) {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+
     const handleDateChange = (selectedDate) => {
         console.log("Selected date:", selectedDate);
         // Сохраняем дату в формате YYYY-MM-DD
@@ -55,13 +55,7 @@ function ModalEditWhIn({ show, onHide, product, onUpdated }) {
 
     const handleProductSelect = (selectedOption) => {
         console.log("Selected product:", selectedOption);
-        // Сохраняем и value (id) и label (name)
-        setFormData(prev => ({ 
-            ...prev, 
-            name: selectedOption?.label || "",
-            // Если нужно сохранить id продукта, добавь поле product_id в formData
-            // product_id: selectedOption?.value || ""
-        }));
+        setFormData(prev => ({ ...prev, name: selectedOption?.label || "" }));
     };
 
     const handleSubmit = async (e) => {
@@ -69,16 +63,18 @@ function ModalEditWhIn({ show, onHide, product, onUpdated }) {
         if (!product) return;
 
         try {
+            console.log("formData: ", formData);
             const response = await axios.put(
                 `${URL}/wh/update/${product.id}/`,
                 formData
             );
             console.log("Updated successfully:", response.data);
-            
+            alert(`Запись ${formData.name} успешно обновлена!`);
+
             if (onUpdated) {
                 onUpdated(); // Обновляем таблицу
             }
-            
+
             onHide(); // Закрываем модальное окно
         } catch (err) {
             console.error("Update error:", err);
@@ -92,9 +88,7 @@ function ModalEditWhIn({ show, onHide, product, onUpdated }) {
             </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={handleSubmit}>
-                    
                     <Form.Group controlId="formBasicDate" className="mb-3">
-                        <Form.Label>Дата</Form.Label>
                         <MyDatePicker
                             value={getDateObject(formData.date)}
                             onChange={handleDateChange}
@@ -104,7 +98,7 @@ function ModalEditWhIn({ show, onHide, product, onUpdated }) {
                     <Form.Group controlId="formBasicProduct" className="mb-3">
                         <Form.Label>Товар</Form.Label>
                         <MySelectProduct
-                            value={formData.name} // Передаем текущее название товара
+                            value={formData.name}
                             onSelect={handleProductSelect}
                         />
                     </Form.Group>
@@ -150,6 +144,16 @@ function ModalEditWhIn({ show, onHide, product, onUpdated }) {
                             rows={3}
                             name="notes"
                             value={formData.notes}
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicState" className="mb-3 d-none">
+                        <Form.Label>Статус</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="state"
+                            value={formData.state}
                             onChange={handleChange}
                         />
                     </Form.Group>

@@ -11,18 +11,13 @@ function MySelectProduct({ onSelect, value = "" }) {
       .get("https://sakha.lat/alla/products/")
       .then((res) => {
         const formattedOptions = res.data.map((item) => ({
-          value: String(item.id),
+          value: String(item.id),   // force to string for consistent comparison
           label: item.product_name,
         }));
         setOptions(formattedOptions);
       })
       .catch((err) => console.error("Error fetching products:", err));
   }, []);
-
-  // Находим option по label (названию товара)
-  const findOptionByLabel = (label) => {
-    return options.find(opt => opt.label === label);
-  };
 
   const handleChange = (e) => {
     const selectedValue = e.target.value;
@@ -32,15 +27,8 @@ function MySelectProduct({ onSelect, value = "" }) {
     if (onSelect) onSelect(selectedOption || null);
   };
 
-  // Получаем value для select на основе переданного label
-  const getSelectValue = () => {
-    if (!value) return "";
-    const option = findOptionByLabel(value);
-    return option ? option.value : "";
-  };
-
   return (
-    <Form.Select onChange={handleChange} value={getSelectValue()}>
+    <Form.Select onChange={handleChange} value={value || ""}>
       <option value="" disabled>
         Выбрать товар
       </option>

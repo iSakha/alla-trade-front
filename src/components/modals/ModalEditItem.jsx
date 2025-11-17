@@ -1,3 +1,4 @@
+// ModalEditItem
 import React, { useState, useEffect } from "react";
 import { Modal, Form, Button, Alert } from "react-bootstrap";
 import MySelectSupplier from "../selects/MySelectSupplier";
@@ -64,6 +65,7 @@ function ModalEditItem({ show, onHide, product }) {
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
+          
           <Form.Group controlId="formBasicType" className="mb-3">
             <Form.Label>Категория товара</Form.Label>
             <MySelectType
@@ -71,6 +73,7 @@ function ModalEditItem({ show, onHide, product }) {
               onSelect={(val) => setFormData((prev) => ({ ...prev, id_type: val }))}
             />
           </Form.Group>
+
           <Form.Group controlId="formBasicSupplier" className="mb-3">
             <Form.Label>Поставщик</Form.Label>
             <MySelectSupplier
@@ -80,6 +83,7 @@ function ModalEditItem({ show, onHide, product }) {
               }
             />
           </Form.Group>
+
           <Form.Group controlId="formBasicName" className="mb-3">
             <Form.Label>Наименование товара</Form.Label>
             <Form.Control
@@ -90,6 +94,7 @@ function ModalEditItem({ show, onHide, product }) {
               required
             />
           </Form.Group>
+
           <Form.Group controlId="formBasicUnit" className="mb-3">
             <Form.Label>Ед. измерения</Form.Label>
             <Form.Control
@@ -100,6 +105,7 @@ function ModalEditItem({ show, onHide, product }) {
               required
             />
           </Form.Group>
+
         </Form>
       </Modal.Body>
       <Modal.Footer>

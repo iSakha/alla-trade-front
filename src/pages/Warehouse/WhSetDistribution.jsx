@@ -47,8 +47,7 @@ function WhSetDistribution() {
         const date = new Date();
         console.log("date:", date);
         const formattedDate = date
-            ? `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`
-            : "";
+            ? `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}` : "";
 
         product.date = formattedDate;
 
