@@ -4,7 +4,7 @@ import { Modal, Form, Button, Alert } from "react-bootstrap";
 import MySelectSupplier from "../selects/MySelectSupplier";
 import MySelectType from "../selects/MySelectType";
 
-const URL = "https://sakha.lat/alla"
+const URL = import.meta.env.VITE_API_URL;
 
 function ModalEditItem({ show, onHide, product }) {
   const [formData, setFormData] = useState({

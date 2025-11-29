@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 import axios from "axios";
 import WhSetDistrTable from "../../components/tables/WhSetDistrTable";
 
-const URL = "https://sakha.lat/alla"
+const URL = import.meta.env.VITE_API_URL;
 
 function WhSetDistribution() {
     const [products, setProducts] = useState([]);

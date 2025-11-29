@@ -5,8 +5,9 @@ import axios from "axios";
 import DbTable from "../../../components/tables/DbTable";
 import ModalEditItem from "../../../components/modals/ModalEditItem";
 
-const URL = "https://sakha.lat/alla"
-// const URL = "http://127.0.0.1:4444"
+const URL = import.meta.env.VITE_API_URL;
+
+console.log("URL: ", URL);
 
 function Database() {
   const [products, setProducts] = useState([]);

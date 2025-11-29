@@ -5,7 +5,7 @@ import axios from "axios";
 import WhSetDistrHistTable from "../../components/tables/WhSetDistrHistTable";
 import ModalEditDistrHistory from "../../components/modals/ModalEditDistrHistory";
 
-const URL = "https://sakha.lat/alla"
+const URL = import.meta.env.VITE_API_URL;
 
 function WhSetDistrHistory() {
 

@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 
+const URL = import.meta.env.VITE_API_URL;
+
 function MySelectProduct({ onSelect, value = "" }) {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://sakha.lat/alla/products/")
+      .get(URL + "/products")
       .then((res) => {
         const formattedOptions = res.data.map((item) => ({
           value: String(item.id),

@@ -4,9 +4,7 @@ import MySelectProduct from "../selects/MySelectProduct";
 import axios from "axios";
 import MyDatePicker from "../../components/MyDatePicker";
 
-const URL = "https://sakha.lat/alla";
-// const URL = "http://192.168.100.10:4433/wh/in";
-// const URL = "http://192.168.100.10:4433";
+const URL = import.meta.env.VITE_API_URL;
 
 function ModalWhIn({ show, onHide }) {
   const [date, setDate] = useState("");

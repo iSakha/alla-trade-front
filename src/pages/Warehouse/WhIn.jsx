@@ -5,10 +5,7 @@ import WhInTable from "../../components/tables/WhInTable";
 import axios from "axios";
 import ModalEditWhIn from "../../components/modals/ModalEditWhIn";
 
-const URL = "https://sakha.lat/alla"
-
-
-
+const URL = import.meta.env.VITE_API_URL;
 
 function WhIn() {
   const [products, setProducts] = useState([]);

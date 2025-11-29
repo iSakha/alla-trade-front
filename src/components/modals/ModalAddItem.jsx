@@ -5,8 +5,7 @@ import MySelectSupplier from "../selects/MySelectSupplier";
 import MySelectType from "../selects/MySelectType";
 import axios from "axios";
 
-const URL = "https://sakha.lat/alla"
-// const URL = "http://127.0.0.1:3030";
+const URL = import.meta.env.VITE_API_URL;
 
 function ModalAddItem({ show, onHide, onItemAdded }) {
   const [id_type, setType] = useState("");

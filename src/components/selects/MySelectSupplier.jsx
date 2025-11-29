@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 
+const URL = import.meta.env.VITE_API_URL;
+
 
 function MySelectSupplier({ onSelect, value = "" }) {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://sakha.lat/alla/suppliers/")
+      .get(URL + "/suppliers")
       .then((res) => {
         const formattedOptions = res.data.map((item) => ({
           value: item.id,

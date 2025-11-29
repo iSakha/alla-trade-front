@@ -4,7 +4,7 @@ import MySelectProduct from "../selects/MySelectProduct";
 import axios from "axios";
 import MyDatePicker from "../../components/MyDatePicker";
 
-const URL = "https://sakha.lat/alla";
+const URL = import.meta.env.VITE_API_URL;
 
 function ModalEditWhIn({ show, onHide, product, onUpdated }) {
     const [formData, setFormData] = useState({
