@@ -12,6 +12,7 @@ import WhDistribution from "./pages/Warehouse/WhDistribution"
 import WhSetDistribution from "./pages/Warehouse/WhSetDistribution"
 import WhSetDistrHistory from "./pages/Warehouse/WhSetDistrHistory"
 import Summary from "./pages/Checkout/Summary";
+import SummaryReal from "./pages/Checkout/SummaryReal";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -30,6 +31,7 @@ function App() {
           <Route path="wh-set-distr" element={<WhSetDistribution />} />
           <Route path="wh-set-distr-hist" element={<WhSetDistrHistory />} />
           <Route path="check" element={<Summary />} />
+          <Route path="check-real" element={<SummaryReal />} />
         </Routes>
       </BrowserRouter>
     </>
