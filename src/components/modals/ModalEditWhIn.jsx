@@ -17,18 +17,16 @@ function ModalEditWhIn({ show, onHide, product, onUpdated }) {
         state: "",
     });
 
-    // Преобразуем дату из строки в объект Date для DatePicker
     const getDateObject = (dateString) => {
         if (!dateString) return new Date();
-        const formattedDate = product.date ? product.date.split('T')[0] : "";
-        return new Date(formattedDate);
+        return new Date(dateString);
     };
 
     useEffect(() => {
         if (product) {
             // Форматируем дату при загрузке
             const formattedDate = product.date ? product.date.split('T')[0] : "";
-            
+
             setFormData({
                 date: formattedDate,
                 name: product.name || "",
@@ -46,18 +44,29 @@ function ModalEditWhIn({ show, onHide, product, onUpdated }) {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleDateChange = (selectedDate) => {
-        console.log("Selected date:", selectedDate);
+    // const handleDateChange = (selectedDate) => {
+    //     console.log("Selected date:", selectedDate);
+    //     // Сохраняем дату в формате YYYY-MM-DD
+    //     const formattedDate = selectedDate.toISOString().split("T")[0];
+    //     setFormData(prev => ({ ...prev, date: formattedDate }));
+    // };
+
+
+        const handleDateChange = (date) => {
+        console.log("Selected date:", date);
         // Сохраняем дату в формате YYYY-MM-DD
-        const formattedDate = selectedDate.toISOString().split("T")[0];
+        const formattedDate = date
+            ? `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`
+            : "";
         setFormData(prev => ({ ...prev, date: formattedDate }));
     };
 
+    
     const handleProductSelect = (selectedOption) => {
         console.log("Selected product:", selectedOption);
         // Сохраняем и value (id) и label (name)
-        setFormData(prev => ({ 
-            ...prev, 
+        setFormData(prev => ({
+            ...prev,
             name: selectedOption?.label || "",
             // Если нужно сохранить id продукта, добавь поле product_id в formData
             // product_id: selectedOption?.value || ""
@@ -74,11 +83,11 @@ function ModalEditWhIn({ show, onHide, product, onUpdated }) {
                 formData
             );
             console.log("Updated successfully:", response.data);
-            
+
             if (onUpdated) {
                 onUpdated(); // Обновляем таблицу
             }
-            
+
             onHide(); // Закрываем модальное окно
         } catch (err) {
             console.error("Update error:", err);
@@ -92,7 +101,7 @@ function ModalEditWhIn({ show, onHide, product, onUpdated }) {
             </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={handleSubmit}>
-                    
+
                     <Form.Group controlId="formBasicDate" className="mb-3">
                         <Form.Label>Дата</Form.Label>
                         <MyDatePicker

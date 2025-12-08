@@ -1,3 +1,4 @@
+// ModalWhIn
 import React, { useState } from "react";
 import { Modal, Form, Button, Alert } from "react-bootstrap";
 import MySelectProduct from "../selects/MySelectProduct";
@@ -18,11 +19,12 @@ function ModalWhIn({ show, onHide }) {
   const [error, setError] = useState("");
 
   const addProduct = async () => {
+    setLoading(true);
+    
     console.log("date: ", date);
-    // const formattedDate = date ? date.toISOString().split("T")[0] : "";
     const formattedDate = date
-  ? `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`
-  : "";
+      ? `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`
+      : "";
 
     console.log("formattedDate: ", formattedDate);
 
@@ -38,36 +40,32 @@ function ModalWhIn({ show, onHide }) {
 
     console.log("productObj: ", productObj);
 
-    const response = await axios
-      .post(URL + "/wh", productObj, {
+    try {
+      const response = await axios.post(URL + "/wh", productObj, {
         headers: {
           "Content-Type": "application/json",
         },
-      })
-      .then((response) => {
-        const insertId = response.data.insertId;
-        console.log("Created:", response.data);
-        alert(`${productObj.name} приход учтен!`);
-
-        // handleClose();
-        // location.href = "db";
-      })
-
-      .catch((error) => {
-        console.error("Error creating product:", error);
       });
-
-    handleClose();
+      
+      console.log("Created:", response.data);
+      alert(`${productObj.name} приход учтен!`);
+      handleClose();
+      
+    } catch (error) {
+      console.error("Error creating product:", error);
+      setError("Ошибка при добавлении товара");
+    } finally {
+      setLoading(false);
+    }
   };
-
 
   const handleClose = () => {
     // clear form when close
     setDate("");
-    setProduct("");
-    setQtt("");
-    setUnit("");
-    setPrice("");
+    setProduct(null);
+    setQtt(0);
+    setUnit("кг");
+    setPrice(0);
     setNotes("");
     setError("");
     onHide();
@@ -81,7 +79,8 @@ function ModalWhIn({ show, onHide }) {
       <Modal.Body>
         {error && <Alert variant="danger">{error}</Alert>}
         <Form>
-          <Form.Group controlId="formBasicType" className="mb-3">
+          <Form.Group controlId="formBasicDate" className="mb-3">
+            <Form.Label>Дата</Form.Label>
             <MyDatePicker
               value={date}
               onChange={(selectedDate) => {
@@ -91,10 +90,10 @@ function ModalWhIn({ show, onHide }) {
             />
           </Form.Group>
 
-          <Form.Group controlId="formBasicType" className="mb-3">
+          <Form.Group controlId="formBasicProduct" className="mb-3">
             <Form.Label>Товар</Form.Label>
             <MySelectProduct
-              value={product?.value || ""}
+              value={product?.label || ""} // ← Передаем label, а не value
               onSelect={(selectedOption) => {
                 console.log("Selected product:", selectedOption);
                 setProduct(selectedOption);
@@ -102,43 +101,43 @@ function ModalWhIn({ show, onHide }) {
             />
           </Form.Group>
 
-          <Form.Group controlId="formBasicName" className="mb-3">
+          <Form.Group controlId="formBasicQtt" className="mb-3">
             <Form.Label>Количество</Form.Label>
             <Form.Control
-              type="text"
-              name="name"
+              type="number"
+              value={qtt}
               onChange={(e) => setQtt(e.target.value)}
               required
             />
           </Form.Group>
 
-          <Form.Group controlId="formBasicName" className="mb-3">
+          <Form.Group controlId="formBasicUnit" className="mb-3">
             <Form.Label>Единица измерения</Form.Label>
             <Form.Control
               type="text"
-              name="name"
+              value={unit}
               onChange={(e) => setUnit(e.target.value)}
               required
             />
           </Form.Group>
 
-          <Form.Group controlId="formBasicName" className="mb-3">
+          <Form.Group controlId="formBasicPrice" className="mb-3">
             <Form.Label>Цена</Form.Label>
             <Form.Control
-              type="text"
-              name="name"
+              type="number"
+              step="0.01"
+              value={price}
               onChange={(e) => setPrice(e.target.value)}
               required
             />
           </Form.Group>
 
-          <Form.Group controlId="formBasicName" className="mb-3">
+          <Form.Group controlId="formBasicNotes" className="mb-3">
             <Form.Label>Примечания</Form.Label>
             <Form.Control
               type="text"
-              name="name"
+              value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              required
             />
           </Form.Group>
         </Form>
@@ -149,7 +148,6 @@ function ModalWhIn({ show, onHide }) {
         </Button>
         <Button
           variant="primary"
-          type="submit"
           onClick={addProduct}
           disabled={loading}
         >

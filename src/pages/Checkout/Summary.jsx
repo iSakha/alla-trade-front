@@ -1,23 +1,23 @@
-// WhDistribution.jsx
+// Summary.jsx
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import axios from "axios";
-import WhDistrTable from "../../components/tables/WhDistrTable";
-
+import CheckOutTable from "../../components/tables/CheckOutTable";
 
 const URL = import.meta.env.VITE_API_URL;
 
-function WhDistribution() {
+function Summary() {
 
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const [result, setResult] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const fetchProducts = () => {
+
+  const fetchResult = () => {
     axios
-      .get(URL + "/distr")
+      .get(URL + "/checkout")
       .then((res) => {
-        setProducts(res.data);
+        setResult(res.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -28,7 +28,7 @@ function WhDistribution() {
   };
 
   useEffect(() => {
-    fetchProducts();
+    fetchResult();
   }, []);
 
 
@@ -42,15 +42,15 @@ function WhDistribution() {
 
 
   return (
-        <>
-      <h2>Склад с учетом продаж</h2>
+    <>
+      <h2>Итого за неделю</h2>
       <Container>
-        <WhDistrTable
-          data={products}
+        <CheckOutTable
+          data={result}
         />
       </Container>
     </>
   )
 }
 
-export default WhDistribution
+export default Summary

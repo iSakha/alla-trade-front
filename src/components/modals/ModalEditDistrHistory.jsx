@@ -47,7 +47,6 @@ function ModalEditDistrHistory({ show, onHide, product, onUpdated }) {
     const handleDateChange = (date) => {
         console.log("Selected date:", date);
         // Сохраняем дату в формате YYYY-MM-DD
-        // const formattedDate = selectedDate.toISOString().split("T")[0];
         const formattedDate = date
             ? `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`
             : "";
