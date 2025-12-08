@@ -115,10 +115,6 @@ function MyNavBar() {
                 <NavDropdown.Item href="check-real">Фактически за неделю</NavDropdown.Item>
               </NavDropdown>
               {/* **************************************************************************/}
-              <NavDropdown title="Ревизия склада" id="basic-nav-dropdown">
-
-              </NavDropdown>
-
 
 
 
