@@ -6,6 +6,9 @@ import MySelectType from "../selects/MySelectType";
 
 const URL = import.meta.env.VITE_API_URL;
 
+console.log('API URL:', import.meta.env.VITE_API_URL);
+console.log('Environment:', import.meta.env.VITE_APP_ENV);
+
 function ModalEditItem({ show, onHide, product }) {
   const [formData, setFormData] = useState({
     id_type: "",
