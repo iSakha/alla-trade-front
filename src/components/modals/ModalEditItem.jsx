@@ -1,4 +1,4 @@
-// ModalEditItem
+// ModalEditItem.jsx
 import React, { useState, useEffect } from "react";
 import { Modal, Form, Button, Alert } from "react-bootstrap";
 import MySelectSupplier from "../selects/MySelectSupplier";
@@ -13,6 +13,7 @@ function ModalEditItem({ show, onHide, product }) {
   const [formData, setFormData] = useState({
     id_type: "",
     id_supplier: "",
+    name: "",
     product_name: "",
     unit: "",
   });
@@ -22,6 +23,7 @@ function ModalEditItem({ show, onHide, product }) {
       setFormData({
         id_type: product.id_type || "",
         id_supplier: product.id_supplier || "",
+        name: product.name || "",
         product_name: product.product_name || "",
         unit: product.unit || "",
       });
@@ -46,7 +48,8 @@ function ModalEditItem({ show, onHide, product }) {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
-        }
+        },
+        window.location.reload()
       );
 
       if (!response.ok) {
@@ -88,13 +91,24 @@ function ModalEditItem({ show, onHide, product }) {
           </Form.Group>
 
           <Form.Group controlId="formBasicName" className="mb-3">
+            <Form.Label>Наименование</Form.Label>
+            <Form.Control
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formBasicName" className="mb-3">
             <Form.Label>Наименование товара</Form.Label>
             <Form.Control
               type="text"
               name="product_name"
               value={formData.product_name}
               onChange={handleChange}
-              required
+              disabled
             />
           </Form.Group>
 

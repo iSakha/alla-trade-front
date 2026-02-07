@@ -1,4 +1,5 @@
 // WhSetDistrTable.jsx
+//  Распределение товара
 import React from 'react'
 import { Table, Button } from "react-bootstrap";
 
@@ -35,7 +36,21 @@ function WhSetDistrTable({ data, onEdit, onSave, savedProducts }) {
                             <td className="d-none">{product.id}</td>
                             <td>{product.name}</td>
                             <td>{product.unit}</td>
-                            <td>{product.price}</td>
+
+                            {/* price */}
+                            <td>
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    value={product.price ?? ""}
+                                    onChange={(e) =>
+                                        onEdit({ ...product, price: e.target.value })
+                                    }
+                                    disabled={isSaved} // Блокируем навсегда после сохранения
+                                />
+                            </td>
+
+                            {/* <td>{product.price}</td> */}
                             <td>{product.qtt_wh_remain}</td>
 
                             {/* Алла */}

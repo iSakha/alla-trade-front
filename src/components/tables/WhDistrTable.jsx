@@ -17,7 +17,7 @@ function WhDistrTable({ data }) {
                         <th className="d-none">id</th>
                         <th>Товар</th>
                         <th>Ед. измерения</th>
-                        <th>Цена</th>
+                        <th className="d-none">Цена</th>
                         <th>Остаток на складе</th>
                         <th>Алла</th>
                         <th>Инна</th>
@@ -29,7 +29,7 @@ function WhDistrTable({ data }) {
                             <td className="d-none">{product.id}</td>
                             <td>{product.name}</td>
                             <td>{product.unit}</td>
-                            <td>{product.price}</td>
+                            <td className="d-none">{product.price}</td>
                             <td>{product.qtt_wh_remain}</td>
                             <td>{product.qtt_pers1}</td>
                             <td>{product.qtt_pers2}</td>

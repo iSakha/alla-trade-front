@@ -12,6 +12,9 @@ function Summary() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [sum1, setSum1] = useState(null);
+  const [sum2, setSum2] = useState(null);
+
 
   const fetchResult = () => {
     axios
@@ -19,6 +22,9 @@ function Summary() {
       .then((res) => {
         setResult(res.data);
         setLoading(false);
+        // console.log('res.data: ', res.data);
+        setSum1(res.data[1].sale1);
+        setSum2(res.data[1].sale2);
       })
       .catch((err) => {
         console.log(err);
@@ -46,8 +52,11 @@ function Summary() {
       <h2>Итого за неделю</h2>
       <Container>
         <CheckOutTable
-          data={result}
+          data={result[0]}
         />
+        <p></p>
+        <h4>Итого Алла: {sum1} р.</h4>
+        <h4>Итого Инна: {sum2} р.</h4>
       </Container>
     </>
   )

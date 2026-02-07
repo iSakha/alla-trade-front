@@ -13,6 +13,8 @@ dist-ssr
 *.local
 .env*
 sql*
+*.png
+
 
 
 # Editor directories and files

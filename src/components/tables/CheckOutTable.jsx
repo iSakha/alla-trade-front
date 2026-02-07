@@ -18,23 +18,23 @@ function CheckOutTable({ data }) {
                     <th>Товар</th>
                     <th>Ед. измерения</th>
                     <th>Цена</th>
-                    <th>Количество Алла</th>
-                    <th>Количество Инна</th>
+                    <th>Кол-во Алла</th>
+                    <th>Кол-во Инна</th>
                     <th>Сумма Алла</th>
                     <th>Сумма Инна</th>
                 </tr>
             </thead>
             <tbody>
                 {data.map((product) => (
-                    <tr key={product.id}>
+                    <tr key={product.id_price}>
                         <td className="d-none">{product.id}</td>
                         <td>{product.product_name}</td>
                         <td>{product.unit}</td>
                         <td>{product.price}</td>
-                        <td>{product.sum_qtt1}</td>
-                        <td>{product.sum_qtt2}</td>
-                        <td>{product.earn1}</td>
-                        <td>{product.earn2}</td>
+                        <td>{product.total_qtt_pers1}</td>
+                        <td>{product.total_qtt_pers2}</td>
+                        <td>{product.sale1}</td>
+                        <td>{product.sale2}</td>
                     </tr>
                 ))}
             </tbody>

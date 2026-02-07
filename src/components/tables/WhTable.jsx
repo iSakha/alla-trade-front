@@ -18,7 +18,7 @@ function WhTable({ data }) {
                     <th>Товар</th>
                     <th>Количество</th>
                     <th>Ед. измерения</th>
-                    <th>Сумма</th>
+                    <th className="d-none">Сумма</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,7 +28,7 @@ function WhTable({ data }) {
                         <td>{product.name}</td>
                         <td>{product.qtt_sum}</td>
                         <td>{product.unit}</td>
-                        <td>{product.money_sum}</td>
+                        <td className="d-none">{product.money_sum}</td>
                     </tr>
                 ))}
             </tbody>

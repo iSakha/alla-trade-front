@@ -1,3 +1,4 @@
+//  #MyNavBar.jsx
 import React, { useState } from "react";
 import { Navbar, Nav, Button, Container, NavDropdown } from "react-bootstrap";
 import ModalLogin from "./modals/ModalLogin";
@@ -56,7 +57,7 @@ function MyNavBar() {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
         <Container>
           <img src={komar} style={{ height: "10%", width: "10%" }}></img>
           <Navbar.Brand></Navbar.Brand>
@@ -110,8 +111,8 @@ function MyNavBar() {
               <NavDropdown title="Ревизия склада" id="basic-nav-dropdown">
                 {/* ========================================================================================== */}
 
+                <NavDropdown.Item href="check-leftovers">Остатки</NavDropdown.Item>
                 <NavDropdown.Item href="check">Итого за неделю</NavDropdown.Item>
-                {/* **************************************************************************/}
                 <NavDropdown.Item href="check-real">Фактически за неделю</NavDropdown.Item>
               </NavDropdown>
               {/* **************************************************************************/}

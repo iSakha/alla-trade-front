@@ -1,4 +1,5 @@
 // WhInTable
+//  Поступления на склад
 import React from 'react'
 import { Table, Button } from "react-bootstrap";
 
@@ -13,16 +14,16 @@ function WhInTable({ data, onEdit, onDelete }) {
     <Table striped bordered hover>
       <thead>
         <tr>
-          <th>#</th>
-          <th>Дата</th>
-          <th>Товар</th>
-          <th>Количество</th>
-          <th>Ед. измерения</th>
-          <th>Цена за ед.</th>
-          <th>Примечания</th>
+          <th className="position-sticky top-0">#</th>
+          <th className="position-sticky top-0">Дата</th>
+          <th className="position-sticky top-0">Товар</th>
+          <th className="position-sticky top-0">Количество</th>
+          <th className="position-sticky top-0">Ед. измерения</th>
+          {/* <th className="position-sticky top-0">Цена за ед.</th> */}
+          <th className="position-sticky top-0">Примечания</th>
           <th className="d-none">Статус</th>
-          <th>Изменить</th>
-          <th>Удалить</th>
+          {/* <th className="position-sticky top-0">Изменить</th> */}
+          <th className="position-sticky top-0">Удалить</th>
         </tr>
       </thead>
       <tbody>
@@ -33,10 +34,10 @@ function WhInTable({ data, onEdit, onDelete }) {
             <td>{product.name}</td>
             <td>{product.qtt}</td>
             <td>{product.unit}</td>
-            <td>{product.price}</td>
+            <td className="d-none">{product.price}</td>
             <td>{product.notes}</td>
             <td className="d-none">{product.state}</td>
-            <td>
+            <td className="d-none">
               <div className="update-button">
                 <Button
                   variant="secondary"

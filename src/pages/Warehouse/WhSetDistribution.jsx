@@ -1,4 +1,5 @@
 // WhSetDistribution.jsx
+//  Распределение товара
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import axios from "axios";
@@ -58,6 +59,8 @@ function WhSetDistribution() {
             date: formattedDate
         };
 
+        console.log("data to send:", productWithDate);
+
         try {
             const response = await fetch(URL + "/distr/set", {
                 method: "POST",
@@ -107,7 +110,7 @@ function WhSetDistribution() {
                         </div>
                     </Col>
                     <Col md={6}>
-                        <button 
+                        <button
                             className="btn btn-outline-secondary btn-sm"
                             onClick={resetToToday}
                         >
@@ -115,7 +118,7 @@ function WhSetDistribution() {
                         </button>
                     </Col>
                 </Row>
-                
+
                 <WhSetDistrTable
                     data={products}
                     onEdit={handleEdit}

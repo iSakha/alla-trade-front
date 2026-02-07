@@ -12,16 +12,16 @@ function DbTable({ data, onEdit, onDelete }) {
     <Table striped bordered hover>
       <thead>
         <tr>
-          <th>#</th>
+          <th className="position-sticky top-0">#</th>
           {/* <th>idType</th> */}
-          <th>Категория товара</th>
-          {/* <th>Название</th> */}
-          <th>Название продукта</th>
+          <th className="position-sticky top-0">Категория товара</th>
+          <th className="position-sticky top-0">Название</th>
+          <th className="position-sticky top-0">Название продукта</th>
           {/* <th>idSupplier</th> */}
-          <th>Поставщик</th>
-          <th>Ед. измерения</th>
-          <th>Изменить</th>
-          <th>Удалить</th>
+          <th className="position-sticky top-0">Поставщик</th>
+          <th className="position-sticky top-0">Ед. измерения</th>
+          <th className="position-sticky top-0">Изменить</th>
+          <th className="position-sticky top-0">Удалить</th>
         </tr>
       </thead>
 
@@ -31,7 +31,8 @@ function DbTable({ data, onEdit, onDelete }) {
             <td>{product.id}</td>
             <td className="d-none">{product.id_type}</td>
             <td>{product.type}</td>
-            <td className="d-none">{product.name}</td>
+            {/* <td className="d-none">{product.name}</td> */}
+            <td>{product.name}</td>
             <td>{product.product_name}</td>
             <td className="d-none">{product.id_supplier}</td>
             <td>{product.supplier}</td>
