@@ -108,10 +108,11 @@ function MyNavBar() {
 
 
               {/* ========================================================================================== */}
-              <NavDropdown title="Ревизия склада" id="basic-nav-dropdown">
+              <NavDropdown title="Еженедельный подсчет" id="basic-nav-dropdown">
                 {/* ========================================================================================== */}
 
-                <NavDropdown.Item href="check-leftovers">Остатки</NavDropdown.Item>
+                <NavDropdown.Item href="check-leftovers1">Остатки за неделю Алла</NavDropdown.Item>
+                <NavDropdown.Item href="check-leftovers2">Остатки за неделю Инна</NavDropdown.Item>
                 <NavDropdown.Item href="check">Итого за неделю</NavDropdown.Item>
                 <NavDropdown.Item href="check-real">Фактически за неделю</NavDropdown.Item>
               </NavDropdown>

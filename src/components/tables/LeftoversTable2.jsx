@@ -1,8 +1,9 @@
-// LeftoversTable.jsx
+// LeftoversTable2.jsx
 import React from 'react'
 import { Table, Button } from "react-bootstrap";
 
-function LeftoversTable({ data, onEdit, onSave, savedProducts }) {
+function LeftoversTable2({ data, onEdit, onSave, savedProducts }) {
+
     
     if (!data || data.length === 0) {
         return <p className="text-center p-3">Нет данных для отображения</p>;
@@ -16,7 +17,7 @@ function LeftoversTable({ data, onEdit, onSave, savedProducts }) {
                     <th>Товар</th>
                     <th>Ед. измерения</th>
                     <th>Цена</th>
-                    <th>Кол-во Алла</th>
+                    {/* <th>Кол-во Алла</th> */}
                     <th>Кол-во Инна</th>
                     <th>Сохранить</th>
                 </tr>
@@ -44,7 +45,7 @@ function LeftoversTable({ data, onEdit, onSave, savedProducts }) {
                                     placeholder="0.00"
                                 />
                             </td>
-                            <td>
+                            {/* <td>
                                 <input
                                     type="number"
                                     step="0.01"
@@ -57,7 +58,7 @@ function LeftoversTable({ data, onEdit, onSave, savedProducts }) {
                                     disabled={isSaved}
                                     placeholder="0.00"
                                 />
-                            </td>
+                            </td> */}
                             <td>
                                 <input
                                     type="number"
@@ -89,4 +90,4 @@ function LeftoversTable({ data, onEdit, onSave, savedProducts }) {
     );
 }
 
-export default LeftoversTable;
+export default LeftoversTable2;

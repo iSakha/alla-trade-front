@@ -11,7 +11,8 @@ import WhIn from "./pages/Warehouse/WhIn"
 import WhDistribution from "./pages/Warehouse/WhDistribution"
 import WhSetDistribution from "./pages/Warehouse/WhSetDistribution"
 import WhSetDistrHistory from "./pages/Warehouse/WhSetDistrHistory"
-import Leftovers from "./pages/Checkout/Leftovers";
+import Leftovers1 from "./pages/Checkout/Leftovers1";
+import Leftovers2 from "./pages/Checkout/Leftovers2";
 import Summary from "./pages/Checkout/Summary";
 import SummaryReal from "./pages/Checkout/SummaryReal";
 
@@ -37,7 +38,8 @@ function App() {
           <Route path="wh-distr" element={<WhDistribution />} />
           <Route path="wh-set-distr" element={<WhSetDistribution />} />
           <Route path="wh-set-distr-hist" element={<WhSetDistrHistory />} />
-          <Route path="check-leftovers" element={<Leftovers />} />
+          <Route path="check-leftovers1" element={<Leftovers1 />} />
+          <Route path="check-leftovers2" element={<Leftovers2 />} />
           <Route path="check" element={<Summary />} />
           <Route path="check-real" element={<SummaryReal />} />
         </Routes>

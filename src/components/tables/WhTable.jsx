@@ -14,21 +14,19 @@ function WhTable({ data }) {
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <th className="d-none">id</th>
+                    <th>#</th>
                     <th>Товар</th>
                     <th>Количество</th>
                     <th>Ед. измерения</th>
-                    <th className="d-none">Сумма</th>
                 </tr>
             </thead>
             <tbody>
                 {data.map((product) => (
-                    <tr key={product.id}>
-                        <td className="d-none">{product.id}</td>
+                    <tr key={product.id_prod}>
+                        <td>{product.id_prod}</td>
                         <td>{product.name}</td>
                         <td>{product.qtt_sum}</td>
                         <td>{product.unit}</td>
-                        <td className="d-none">{product.money_sum}</td>
                     </tr>
                 ))}
             </tbody>

@@ -1,20 +1,25 @@
-// Leftovers.jsx
+// Leftovers1.jsx
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import axios from "axios";
-import LeftoversTable from "../../components/tables/LeftoversTable";
+import LeftoversTable1 from "../../components/tables/LeftoversTable1";
 
 const URL = import.meta.env.VITE_API_URL;
 
-function Leftovers() {
+function Leftovers1() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [savedProducts, setSavedProducts] = useState(new Set());
 
+    // console.log('VITE_API_URL:', import.meta.env.VITE_API_URL);
+    // console.log('MODE:', import.meta.env.MODE);
+    // console.log('PROD:', import.meta.env.PROD);
+    // console.log('DEV:', import.meta.env.DEV);
+
     const fetchProducts = () => {
         axios
-            .get(URL + "/checkout/leftovers")
+            .get(URL + "/checkout/leftovers/1")
             .then((res) => {
                 const productsWithInputs = res.data.map(product => ({
                     ...product,
@@ -52,6 +57,8 @@ function Leftovers() {
             return;
         }
 
+        console.log("product :", product);
+
         const dataToSend = {
             id_prod: product.id_prod,
             product_name: product.product_name,
@@ -88,15 +95,17 @@ function Leftovers() {
 
     return (
         <>
+            <h1>Алла</h1>
             <h2>Остатки за неделю</h2>
             <p className="text-muted">Заполните цену и количество у каждого продавца, затем нажмите "Сохранить"</p>
             <Container>
                 {products.length > 0 ? (
-                    <LeftoversTable
+                    <LeftoversTable1
                         data={products}
                         onEdit={handleEdit}
                         onSave={handleSave}
                         savedProducts={savedProducts}
+                        seller = {1}
                     />
                 ) : (
                     <div className="alert alert-warning">
@@ -108,4 +117,4 @@ function Leftovers() {
     );
 }
 
-export default Leftovers;
+export default Leftovers1;
