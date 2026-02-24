@@ -52,8 +52,8 @@ function Leftovers1() {
     };
 
     const handleSave = async (product) => {
-        if (!product.price || !product.alla_qtt || !product.inna_qtt) {
-            alert("Пожалуйста, заполните все поля: цена, количество у Аллы и у Инны");
+        if (!product.price || !product.alla_qtt) {
+            alert("Пожалуйста, заполните все поля: цена, количество у Аллы");
             return;
         }
 
