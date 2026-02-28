@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import axios from "axios";
-import CheckOutTable from "../../components/tables/CheckOutTable";
+import CheckOutTable1 from "../../components/tables/CheckOutTable1";
+import CheckOutTable2 from "../../components/tables/CheckOutTable2";
 
 const URL = import.meta.env.VITE_API_URL;
 
@@ -22,7 +23,7 @@ function Summary() {
       .then((res) => {
         setResult(res.data);
         setLoading(false);
-        // console.log('res.data: ', res.data);
+        console.log('res.data: ', res.data);
         setSum1(res.data[1].sale1);
         setSum2(res.data[1].sale2);
       })
@@ -51,12 +52,16 @@ function Summary() {
     <>
       <h2>Итого за неделю</h2>
       <Container>
-        <CheckOutTable
-          data={result[0]}
+        <CheckOutTable1
+          data={result}
         />
         <p></p>
-        <h4>Итого Алла: {sum1} р.</h4>
-        <h4>Итого Инна: {sum2} р.</h4>
+        <hr></hr>
+        <hr></hr>
+        <p></p>
+        <CheckOutTable2
+          data={result}
+        />
       </Container>
     </>
   )

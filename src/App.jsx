@@ -14,7 +14,7 @@ import WhSetDistrHistory from "./pages/Warehouse/WhSetDistrHistory"
 import Leftovers1 from "./pages/Checkout/Leftovers1";
 import Leftovers2 from "./pages/Checkout/Leftovers2";
 import Summary from "./pages/Checkout/Summary";
-import SummaryReal from "./pages/Checkout/SummaryReal";
+import WhRecalculation from "./pages/Warehouse/WhRecalculation";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -41,7 +41,7 @@ function App() {
           <Route path="check-leftovers1" element={<Leftovers1 />} />
           <Route path="check-leftovers2" element={<Leftovers2 />} />
           <Route path="check" element={<Summary />} />
-          <Route path="check-real" element={<SummaryReal />} />
+          <Route path="recalc" element={<WhRecalculation />} />
         </Routes>
       </BrowserRouter>
     </>

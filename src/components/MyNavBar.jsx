@@ -114,7 +114,7 @@ function MyNavBar() {
                 <NavDropdown.Item href="check-leftovers1">Остатки за неделю Алла</NavDropdown.Item>
                 <NavDropdown.Item href="check-leftovers2">Остатки за неделю Инна</NavDropdown.Item>
                 <NavDropdown.Item href="check">Итого за неделю</NavDropdown.Item>
-                <NavDropdown.Item href="check-real">Фактически за неделю</NavDropdown.Item>
+                <NavDropdown.Item href="recalc">Пересчет склада</NavDropdown.Item>
               </NavDropdown>
               {/* **************************************************************************/}
 
