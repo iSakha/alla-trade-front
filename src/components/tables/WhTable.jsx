@@ -18,6 +18,8 @@ function WhTable({ data }) {
                     <th>Товар</th>
                     <th>Количество</th>
                     <th>Ед. измерения</th>
+                    <th>Срок реализации</th>
+                    <th>Минимальный запас</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +29,10 @@ function WhTable({ data }) {
                         <td>{product.name}</td>
                         <td>{product.qtt_sum}</td>
                         <td>{product.unit}</td>
+                        <td>{product.expiry_date}</td>
+                        <td>{product.qtt_min}</td>
+                        <td className="d-none">{product.warning_expiry}</td>
+                        <td className="d-none">{product.warning_qtt}</td>
                     </tr>
                 ))}
             </tbody>

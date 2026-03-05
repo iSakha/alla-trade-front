@@ -71,7 +71,7 @@ function MyNavBar() {
               <NavDropdown title="Склад" id="basic-nav-dropdown">
                 {/* ========================================================================================== */}
 
-                <NavDropdown.Item href="wh">Наличие на складе</NavDropdown.Item>
+                <NavDropdown.Item href="wh">Склад до пересчета</NavDropdown.Item>
 
                 {/* **************************************************************************/}
                 <NavDropdown.Item
@@ -89,7 +89,7 @@ function MyNavBar() {
                 </NavDropdown.Item>
                 {/* **************************************************************************/}
                 <NavDropdown.Item href="wh-distr">
-                  Склад с учетом продаж
+                  Склад с учетом распределения
                 </NavDropdown.Item>
                 {/* **************************************************************************/}
                 <NavDropdown.Item href="wh-set-distr">
@@ -134,12 +134,6 @@ function MyNavBar() {
                   Список поставщиков
                 </NavDropdown.Item>
                 {/* **************************************************************************/}
-                <NavDropdown.Item
-                  href="spl-add"
-                  onClick={(e) => handleLinkClick(e, handleShowAddSupplier)}
-                >
-                  Добавить поставщика
-                </NavDropdown.Item>
                 {/* **************************************************************************/}
               </NavDropdown>
             </Nav>

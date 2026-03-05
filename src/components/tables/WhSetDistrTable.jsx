@@ -1,5 +1,4 @@
 // WhSetDistrTable.jsx
-//  Распределение товара
 import React from 'react'
 import { Table, Button } from "react-bootstrap";
 
@@ -41,28 +40,32 @@ function WhSetDistrTable({ data, onEdit, onSave, savedProducts }) {
                             <td>
                                 <input
                                     type="number"
+                                    step="0.01"
+                                    min="0"
                                     className="form-control"
                                     value={product.price ?? ""}
                                     onChange={(e) =>
                                         onEdit({ ...product, price: e.target.value })
                                     }
-                                    disabled={isSaved} // Блокируем навсегда после сохранения
+                                    disabled={isSaved}
                                 />
                             </td>
 
-                            {/* <td>{product.price}</td> */}
                             <td>{product.qtt_wh_remain}</td>
 
                             {/* Алла */}
                             <td>
                                 <input
                                     type="number"
+                                    step="0.01"
+                                    min="0"
+                                    inputMode="decimal"
                                     className="form-control"
                                     value={product.alla ?? ""}
                                     onChange={(e) =>
                                         onEdit({ ...product, alla: e.target.value })
                                     }
-                                    disabled={isSaved} // Блокируем навсегда после сохранения
+                                    disabled={isSaved}
                                 />
                             </td>
 
@@ -70,12 +73,15 @@ function WhSetDistrTable({ data, onEdit, onSave, savedProducts }) {
                             <td>
                                 <input
                                     type="number"
+                                    step="0.01"
+                                    min="0"
+                                    inputMode="decimal"
                                     className="form-control"
                                     value={product.inna ?? ""}
                                     onChange={(e) =>
                                         onEdit({ ...product, inna: e.target.value })
                                     }
-                                    disabled={isSaved} // Блокируем навсегда после сохранения
+                                    disabled={isSaved}
                                 />
                             </td>
 
@@ -101,4 +107,4 @@ function WhSetDistrTable({ data, onEdit, onSave, savedProducts }) {
     )
 }
 
-export default WhSetDistrTable
+export default WhSetDistrTable;
