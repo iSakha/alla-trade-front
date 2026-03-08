@@ -5,6 +5,14 @@ import MySelectSupplier from "../selects/MySelectSupplier";
 import MySelectType from "../selects/MySelectType";
 import axios from "axios";
 
+const unitOptions = [
+  { value: "кг", label: "кг" },
+  { value: "банка", label: "банка" },
+  { value: "шт", label: "шт" }
+  // { value: "литр", label: "литр" },
+  // { value: "упаковка", label: "упаковка" }
+];
+
 const URL = import.meta.env.VITE_API_URL;
 
 function ModalAddItem({ show, onHide, onItemAdded }) {
@@ -101,12 +109,23 @@ function ModalAddItem({ show, onHide, onItemAdded }) {
 
           <Form.Group controlId="formBasicUnit" className="mb-3">
             <Form.Label>Ед. измерения</Form.Label>
-            <Form.Control
+            {/* <Form.Control
               type="text"
               name="unit"
               onChange={(e) => setUnit(e.target.value)}
               required
-            />
+            /> */}
+            <Form.Select
+              value={unit}
+              onChange={(e) => setUnit(e.target.value)}
+              required
+            >
+              {unitOptions.map(option => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Form.Select>
           </Form.Group>
         </Form>
       </Modal.Body>

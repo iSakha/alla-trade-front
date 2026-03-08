@@ -1,57 +1,51 @@
-// MySelectProduct
-import React, { useEffect, useState } from "react";
-import Form from "react-bootstrap/Form";
-import axios from "axios";
+// MySelectProduct.jsx
+import React from 'react';
+import Select from 'react-select';
 
-const URL = import.meta.env.VITE_API_URL;
+function MySelectProduct({ value, onSelect, options = [], placeholder = "Выберите товар...", required = false }) {
+  // Преобразуем данные в формат react-select
+  const selectOptions = Array.isArray(options) 
+    ? options.map(option => ({
+        value: option.id,
+        label: option.product_name,
+        unit: option.unit
+      }))
+    : [];
 
-function MySelectProduct({ onSelect, value = "" }) {
-  const [options, setOptions] = useState([]);
+  // Находим выбранный элемент
+  const selectedOption = selectOptions.find(option => 
+    option.label === value || option.value === value
+  ) || null;
 
-  useEffect(() => {
-    axios
-      .get(URL + "/products")
-      .then((res) => {
-        const formattedOptions = res.data.map((item) => ({
-          value: String(item.id),
-          label: item.product_name,
-        }));
-        setOptions(formattedOptions);
-      })
-      .catch((err) => console.error("Error fetching products:", err));
-  }, []);
-
-  // Находим option по label (названию товара)
-  const findOptionByLabel = (label) => {
-    return options.find(opt => opt.label === label);
+  const handleChange = (selected) => {
+    onSelect(selected);
   };
 
-  const handleChange = (e) => {
-    const selectedValue = e.target.value;
-    const selectedOption = options.find(
-      (opt) => opt.value === selectedValue
-    );
-    if (onSelect) onSelect(selectedOption || null);
-  };
-
-  // Получаем value для select на основе переданного label
-  const getSelectValue = () => {
-    if (!value) return "";
-    const option = findOptionByLabel(value);
-    return option ? option.value : "";
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      minHeight: '38px',
+    }),
+    menu: (provided) => ({
+      ...provided,
+      zIndex: 9999, // Чтобы список был поверх других элементов
+    }),
   };
 
   return (
-    <Form.Select onChange={handleChange} value={getSelectValue()}>
-      <option value="" disabled>
-        Выбрать товар
-      </option>
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-    </Form.Select>
+    <Select
+      options={selectOptions}
+      value={selectedOption}
+      onChange={handleChange}
+      placeholder={placeholder}
+      isClearable
+      isSearchable
+      styles={customStyles}
+      required={required}
+      noOptionsMessage={() => "Товары не найдены"}
+      // Важно! Отключаем внутреннюю фильтрацию, так как мы передаем уже отфильтрованные options
+      filterOption={null}
+    />
   );
 }
 

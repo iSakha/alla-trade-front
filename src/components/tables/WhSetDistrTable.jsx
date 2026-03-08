@@ -1,6 +1,6 @@
 // WhSetDistrTable.jsx
 import React from 'react'
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 function WhSetDistrTable({ data, onEdit, onSave, savedProducts }) {
 
@@ -29,6 +29,10 @@ function WhSetDistrTable({ data, onEdit, onSave, savedProducts }) {
                         (Number(product.alla) || 0) + (Number(product.inna) || 0);
                     const isInvalid = totalDistributed > product.qtt_wh_remain;
                     const isSaved = savedProducts.has(product.id);
+                    
+                    // Определяем, есть ли последняя цена
+                    const hasLastPrice = product.last_price !== null && product.last_price !== undefined;
+                    const lastPrice = hasLastPrice ? parseFloat(product.last_price).toFixed(2) : null;
 
                     return (
                         <tr key={product.id} className={isInvalid ? "table-danger" : ""}>
@@ -38,17 +42,55 @@ function WhSetDistrTable({ data, onEdit, onSave, savedProducts }) {
 
                             {/* price */}
                             <td>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    min="0"
-                                    className="form-control"
-                                    value={product.price ?? ""}
-                                    onChange={(e) =>
-                                        onEdit({ ...product, price: e.target.value })
-                                    }
-                                    disabled={isSaved}
-                                />
+                                {hasLastPrice ? (
+                                    <OverlayTrigger
+                                        placement="top"
+                                        overlay={
+                                            <Tooltip id={`tooltip-${product.id}`}>
+                                                Последняя использованная цена: {lastPrice} ₽
+                                            </Tooltip>
+                                        }
+                                    >
+                                        <div className="d-flex align-items-center">
+                                            <input
+                                                type="number"
+                                                step="0.01"
+                                                min="0"
+                                                className="form-control"
+                                                value={product.price ?? lastPrice ?? ""}
+                                                onChange={(e) =>
+                                                    onEdit({ ...product, price: e.target.value })
+                                                }
+                                                disabled={isSaved}
+                                                style={{
+                                                    borderColor: hasLastPrice && !product.price ? '#28a745' : undefined,
+                                                    backgroundColor: hasLastPrice && !product.price ? '#f0fff0' : undefined
+                                                }}
+                                            />
+                                            {!product.price && hasLastPrice && (
+                                                <span className="text-success ms-2" style={{ fontSize: '1.2rem' }}>↻</span>
+                                            )}
+                                        </div>
+                                    </OverlayTrigger>
+                                ) : (
+                                    <input
+                                        type="number"
+                                        step="0.01"
+                                        min="0"
+                                        className="form-control"
+                                        value={product.price ?? ""}
+                                        onChange={(e) =>
+                                            onEdit({ ...product, price: e.target.value })
+                                        }
+                                        disabled={isSaved}
+                                        placeholder="Введите цену"
+                                    />
+                                )}
+                                {hasLastPrice && !product.price && (
+                                    <small className="text-success d-block">
+                                        Будет использована цена {lastPrice} ₽
+                                    </small>
+                                )}
                             </td>
 
                             <td>{product.qtt_wh_remain}</td>
@@ -66,6 +108,7 @@ function WhSetDistrTable({ data, onEdit, onSave, savedProducts }) {
                                         onEdit({ ...product, alla: e.target.value })
                                     }
                                     disabled={isSaved}
+                                    placeholder="0"
                                 />
                             </td>
 
@@ -82,6 +125,7 @@ function WhSetDistrTable({ data, onEdit, onSave, savedProducts }) {
                                         onEdit({ ...product, inna: e.target.value })
                                     }
                                     disabled={isSaved}
+                                    placeholder="0"
                                 />
                             </td>
 
