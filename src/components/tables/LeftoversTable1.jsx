@@ -59,20 +59,6 @@ function LeftoversTable1({ data, onEdit, onSave, savedProducts }) {
                                     placeholder="0.00"
                                 />
                             </td>
-                            {/* <td>
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    min="0"
-                                    className="form-control"
-                                    value={product.inna_qtt || ""}
-                                    onChange={(e) =>
-                                        onEdit({ ...product, inna_qtt: e.target.value })
-                                    }
-                                    disabled={isSaved}
-                                    placeholder="0.00"
-                                />
-                            </td> */}
                             <td>
                                 <Button
                                     variant={isSaved ? "secondary" : "primary"}

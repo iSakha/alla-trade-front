@@ -23,12 +23,13 @@ function Leftovers1() {
             .then((res) => {
                 const productsWithInputs = res.data.map(product => ({
                     ...product,
-                    price: "",
+                    price: product.price,
                     alla_qtt: "",
                     inna_qtt: ""
                 }));
                 setProducts(productsWithInputs);
                 setLoading(false);
+                console.log('productsWithInputs: ', productsWithInputs);
             })
             .catch((err) => {
                 console.error("Ошибка загрузки данных:", err);
